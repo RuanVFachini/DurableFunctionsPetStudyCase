@@ -2,7 +2,8 @@ using System.Collections.Generic;
 using System.Net;
 using System.Net.Http;
 using System.Threading.Tasks;
-using DurableFunctionsStudyCase.Application.Pets.Dogs;
+using DurableFunctionsStudyCase.Application.Dogs.Validators;
+using DurableFunctionsStudyCase.Application.Pets.Requests;
 using DurableFunctionsStudyCase.Functions.Consts;
 using DurableFunctionsStudyCase.Functions.Extensions;
 using Microsoft.AspNetCore.Mvc;
@@ -22,7 +23,7 @@ namespace DurableFunctionsStudyCase.Functions
             [DurableClient] IDurableOrchestrationClient starter,
             ILogger log)
         {
-            var form = await req.GetJsonBody<DogRequest, DogFormValidator>();
+            var form = await req.GetJsonBody<PetCreateRequest, PetFormValidator>();
 
             if (!form.IsValid)
             {
@@ -30,7 +31,7 @@ namespace DurableFunctionsStudyCase.Functions
                 return form.ToBadRequest();
             }
 
-            string instanceId = await starter.StartNewAsync(OrcherstratorsConsts.Dog.Create, null);
+            string instanceId = await starter.StartNewAsync(OrcherstratorsConsts.Dog.Create, form.Value);
 
             log.LogInformation($"Started orchestration with ID = '{instanceId}'.");
 

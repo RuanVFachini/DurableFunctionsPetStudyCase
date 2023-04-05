@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DurableFunctionsStudyCase.Domain.Pets.Dogs
+namespace DurableFunctionsStudyCase.Domain.Pets.Enums
 {
-    public class Dog
+    public enum PetType
     {
-        public string Name;
+        Dog = 1
     }
 }

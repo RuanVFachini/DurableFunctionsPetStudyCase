@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DurableFunctionsStudyCase.Application.Pets.Dogs
+namespace DurableFunctionsStudyCase.Domain.Pets.Enums
 {
-    public class DogRequest
+    public enum VaccinationType
     {
-        public string Name;
+        Vaccine1 = 1,
+        Vaccine2 = 2
     }
 }
