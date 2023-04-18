@@ -45,7 +45,7 @@ namespace DurableFunctionsStudyCase.Functions.Orcherstrators
                 return _mapper.Map<PetCreateResponse>(dog);
             } catch (TaskFailedException ex)
             {
-                log.LogCritical(ex, "Finished orcherstrator {0} with errors. Details: {1}", new[]{ ex.Message});
+                log.LogCritical(ex, "Finished orcherstrator {0} with errors. Details: {1}", new[]{ context.InstanceId, ex.Message});
                 throw; 
             }
         }
